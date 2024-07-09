@@ -1,16 +1,19 @@
 import { useState } from 'react'
+import Navbar from './components/Navbar'
+import Category from './components/Category'
+import ContentList from './components/ContentList'
 import './index.css'
+import { contentDefault } from './utils/index'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [fill, setFill] = useState(contentDefault)
+  // console.log(fill);
 
   return (
     <>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-      </div>
+      <Navbar />
+      <Category />
+      <ContentList content={fill}/>
     </>
   )
 }
