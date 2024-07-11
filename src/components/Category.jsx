@@ -1,4 +1,9 @@
 export default function category() {
+
+  // function handleCardShow(){
+
+  // };
+
   return (
     <section className="overflow-x-hidden ">
       <div className="mt-20 p-5 flex gap-3 justify-center bg-slate-200 ">

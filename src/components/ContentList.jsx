@@ -1,6 +1,7 @@
 import Content from "./Content";
 
-export default function ContentList({content}){
+export default function ContentList({content,cardShow}){
+    console.log(cardShow);
 
     return(
         <section className="overflow-x-hidden w-screen py-5 px-20">
@@ -9,6 +10,7 @@ export default function ContentList({content}){
                 <Content
                     key={content.id}
                     content={content}
+                    cardShow={cardShow}
                 />
             ))}
             </div>

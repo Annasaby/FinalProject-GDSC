@@ -1,21 +1,18 @@
-import { useState } from 'react'
-import Navbar from './components/Navbar'
-import Category from './components/Category'
-import ContentList from './components/ContentList'
-import './index.css'
-import { contentDefault } from './utils/index'
-import CreatContent from './components/CreateContent'
+import { Route, Routes} from 'react-router-dom'
+import Home from './pages/Home';
+import Signup from './pages/Signup';
+import NoPage from './pages/NoPage';
 
 function App() {
-  const [fill, setFill] = useState(contentDefault)
-  // console.log(fill);
-  
+
   return (
     <>
-      <Navbar />
-      <Category />
-      <ContentList content={fill}/>
-      <CreatContent />
+      <Routes>
+        <Route index element={<Home/>}/>
+        <Route path="/home" element={<Home/>}/>
+        <Route path="/Signup" element={<Signup/>}/>
+        <Route path="*" element={<NoPage/>}/>
+      </Routes>
     </>
   )
 }

@@ -17,6 +17,15 @@ const contentDefault = [
         caption: "ini caption lorem ipsum dolor lorem ipsum dolorlorem ipsum dolor",
         link: "https://www.google.com"
     },
+    {
+        id: 3,
+        creator: "yanto fondation",
+        category: "Beasiswa",
+        img: "/public/vite.svg",
+        title: "Beasiswa Djarum",
+        caption: "ini caption lorem ipsum dolor lorem ipsum dolorlorem ipsum dolor",
+        link: "https://www.google.com"
+    },
 ];
 
 export {contentDefault};
