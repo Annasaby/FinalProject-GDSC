@@ -10,7 +10,7 @@ export default function Navbar() {
       <div className="flex items-center h-20 px-4 text-white">
         <h1 className="flex gap-3 text-4xl font-semibold"><span className="animate-bounce-slow"><FaGraduationCap /></span>Bang Info</h1>
       </div>
-      {location.pathname == "/home" && 
+      {(location.pathname == "/home" || location.pathname == "/")  && 
       <Link to={"/Signup"}>
       <div className="flex items-center gap-1 text-white underline">
         <h5>Logout </h5>

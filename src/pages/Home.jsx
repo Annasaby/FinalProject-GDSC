@@ -11,13 +11,14 @@ export default function Home() {
     const [fill, setFill] = useState(contentDefault)
     // console.log(fill);
     const [cardShow, setCardShow] = useState("Semua");
+    // console.log(cardShow);
     
   return (
     <>
         <Navbar />
-        <Category />
+        <Category setCardShow={setCardShow} />
         <ContentList content={fill} cardShow={cardShow}/>
-        <CreatContent />
+        <CreatContent setFill={setFill}/>
     </>
   )
 }

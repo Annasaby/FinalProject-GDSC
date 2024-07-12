@@ -1,11 +1,9 @@
-import Navbar from "../components/Navbar";
 import SignupForm from "../components/SignupForm";
 
 export default function Signup(){
     return(
-        <>
-            <Navbar/>
+        <div className="bg-sky-100 w-screen h-screen">
             <SignupForm/>
-        </>
+        </div>
     );
 }
