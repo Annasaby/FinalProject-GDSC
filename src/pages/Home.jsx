@@ -7,6 +7,8 @@ import '../index.css'
 import { contentDefault } from '../utils/index'
 import CreatContent from '../components/CreateContent'
 
+// import {db} from '../service/firebase'
+
 export default function Home() {
     const [fill, setFill] = useState(contentDefault)
     // console.log(fill);
