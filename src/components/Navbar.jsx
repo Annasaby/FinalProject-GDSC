@@ -1,5 +1,5 @@
 import { FaGraduationCap } from "react-icons/fa6";
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { signOut } from "firebase/auth";
 import { auth } from "../service/firebase";
 import { useState } from "react";
