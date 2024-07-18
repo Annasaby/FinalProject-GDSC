@@ -1,9 +1,8 @@
 import { IoAdd } from "react-icons/io5";
 import {auth, } from '../service/firebase'
 import { useEffect, useState } from "react";
-import startUpload from "../hooks/useStorage";
 
-export default function CreatContent({creatContent}) {
+export default function CreatContent({uploadContent, uploadImage}) {
   // const {startUpload} = useStorage();
     const [openform, setOpenform] = useState(false)
     // console.log(openform);
@@ -13,7 +12,6 @@ export default function CreatContent({creatContent}) {
     const [judul, setJudul] = useState("");
     const [deskripsi, setDeskripsi] = useState("");
     const [tautan, setTautan] = useState("");
-    const [gambar, setGambar] = useState("")
     const [jenis, setJenis] = useState("");
     
     const [selectedFIle,setSelectedFile] = useState(null);
@@ -21,8 +19,6 @@ export default function CreatContent({creatContent}) {
     //Mengambil email user
     useEffect(()=>{
         const user = auth.currentUser;
-
-    
         if (user !== null) {
             user.providerData.forEach((profile) => {
                 setUserEmail(profile.email.split("@")[0]);
@@ -42,7 +38,7 @@ export default function CreatContent({creatContent}) {
     const handleTautanChange = (e)=>{
       const value = e.target.value;
       setTautan(value);
-      setGambar("/public/vite.svg");
+
       setPengunggah(userEmail);
     }
 
@@ -60,21 +56,15 @@ export default function CreatContent({creatContent}) {
     const handleSubmit = (e)=>{
       e.preventDefault();
 
-      creatContent(pengunggah, judul, deskripsi, tautan, gambar, jenis);
+      const time = new Date().getTime();
+      uploadContent(pengunggah, judul, deskripsi, tautan, jenis, time);
+      uploadImage(selectedFIle, time);
       setPengunggah("");
       setJudul("");
       setDeskripsi("");
       setTautan("");
-      setGambar("");
       setJenis("");
 
-      if (selectedFIle) {
-        startUpload(selectedFIle);
-        console.log(selectedFIle);
-      }else {
-        console.log("No file selected");
-      }
-      setSelectedFile(null);
 
       setOpenform((prev) => !prev )
     }
@@ -82,7 +72,7 @@ export default function CreatContent({creatContent}) {
   return (
     <div className="relative">
       {/* Add button */}
-      <div onClick={()=>{setOpenform((prev) => !prev )}} className={`fixed ${openform && 'rotate-45' } top-40 md:top-32 right-5 md:right-10 bg-sky-400 p-2 w-fit rounded-full hover:scale-110 ease-in-out transition-all cursor-pointer z-30`}>
+      <div onClick={()=>{setOpenform((prev) => !prev )}} className={`fixed ${openform && 'rotate-45' } top-40 md:top-32 right-5 md:right-5 bg-sky-400 p-2 w-fit rounded-full hover:scale-110 ease-in-out transition-all cursor-pointer z-30`}>
         <IoAdd className="text-white" />
       </div>
 
