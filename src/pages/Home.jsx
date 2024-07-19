@@ -2,10 +2,10 @@
 import { useState, useEffect } from 'react'
 import '../index.css'
 import Navbar from '../components/Navbar'
-import Category from '../components/Category'
 import ContentList from '../components/ContentList'
 import { contentDefault } from '../utils/index'
 import CreatContent from '../components/CreateContent'
+import WelcomeMessage from '../components/WelcomeMessage'
 
 import {
   collection,
@@ -23,8 +23,28 @@ import {db, storage} from '../service/firebase'
 import { uploadBytes, ref } from 'firebase/storage'
 
 export default function Home() {
-    const [fill, setFill] = useState(contentDefault);
-    const [cardShow, setCardShow] = useState("Semua");
+  const [fill, setFill] = useState(contentDefault);
+  const [cardShow, setCardShow] = useState("Semua");
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  //Is Scrolled
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY
+      if (scrollY > 80) {
+        setIsScrolled(true)
+      } else {
+        setIsScrolled(false)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
     
     //Mengambil seluruh data setiap ada perubahan
     useEffect(() => {
@@ -60,21 +80,23 @@ export default function Home() {
     }
 
     const uploadImage = async (selectedFIle, timestamp) => {
-      const imgRef = ref(storage, `image-content/${timestamp}.jpeg`);
-      try {
-        await   uploadBytes(imgRef, selectedFIle);
-        console.log("gambar berhsil diunggah");
-      } catch (error) {
-        console.log("error uploadImage:", error);
+      if (selectedFIle) {
+        const imgRef = ref(storage, `image-content/${timestamp}`);
+        try {
+          await   uploadBytes(imgRef, selectedFIle);
+          console.log("gambar berhsil diunggah");
+        } catch (error) {
+          console.log("error uploadImage:", error);
+        }
       }
     }
 
   return (
-    <>
-        <Navbar />
-        <Category setCardShow={setCardShow} />
-        <ContentList content={fill} cardShow={cardShow}/>
+    <div className='overflow-x-hidden w-screen '>
+        <Navbar setCardShow={setCardShow} isScrolled={isScrolled}/>
+        <WelcomeMessage/>
         <CreatContent uploadContent={uploadContent} uploadImage={uploadImage}/>
-    </>
+        <ContentList content={fill} cardShow={cardShow}/>
+    </div>
   )
 }

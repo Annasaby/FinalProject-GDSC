@@ -1,4 +1,5 @@
-import { IoAdd } from "react-icons/io5";
+import { FaPlus } from "react-icons/fa6";
+import { RxCross2 } from "react-icons/rx";
 import {auth, } from '../service/firebase'
 import { useEffect, useState } from "react";
 
@@ -54,57 +55,85 @@ export default function CreatContent({uploadContent, uploadImage}) {
   
 
     const handleSubmit = (e)=>{
-      e.preventDefault();
-
-      const time = new Date().getTime();
-      uploadContent(pengunggah, judul, deskripsi, tautan, jenis, time);
-      uploadImage(selectedFIle, time);
-      setPengunggah("");
-      setJudul("");
-      setDeskripsi("");
-      setTautan("");
-      setJenis("");
-
-
-      setOpenform((prev) => !prev )
+      if (pengunggah && judul && deskripsi && tautan && jenis) {
+        e.preventDefault();
+  
+        const time = new Date().getTime();
+        uploadContent(pengunggah, judul, deskripsi, tautan, jenis, time);
+        uploadImage(selectedFIle, time);
+        setPengunggah("");
+        setJudul("");
+        setDeskripsi("");
+        setTautan("");
+        setJenis("");
+  
+  
+        setOpenform((prev) => !prev )
+      } else {
+        alert("seluruh data perlu diisi");
+      }
     }
 
   return (
-    <div className="relative">
+    <div className="overflow-x-hidden flex justify-center pt-8">
       {/* Add button */}
-      <div onClick={()=>{setOpenform((prev) => !prev )}} className={`fixed ${openform && 'rotate-45' } top-40 md:top-32 right-5 md:right-5 bg-sky-400 p-2 w-fit rounded-full hover:scale-110 ease-in-out transition-all cursor-pointer z-30`}>
-        <IoAdd className="text-white" />
+      <div onClick={()=>{setOpenform((prev) => !prev )}} className={` ${openform && '' } flex justify-center w-1/6 bg-white p-2 rounded-full hover:scale-110 ease-in-out transition-all cursor-pointer z-10`}>
+        <FaPlus className="text-dongker text-2xl" />
       </div>
 
-      <div onClick={()=>{setOpenform((prev) => !prev )}} className={`fixed ${openform || 'hidden'} top-0 z-20 bg-slate-600 opacity-50 h-screen w-screen`}></div>
+      {/* Background */}
+      <div onClick={()=>{setOpenform((prev) => !prev )}} className={`fixed ${openform || 'hidden'} top-0 z-30 bg-slate-600 opacity-50 h-screen w-screen`}></div>
 
-      <div className={`fixed ${openform || 'hidden'} top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-40 px-5 py-10 w-3/4 bg-sky-500 rounded-xl md:w-2/5 `}>
+      {/* Container */}
+      <div className={`fixed ${openform || 'hidden'} top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-40 px-5 py-2 w-3/4 bg-white rounded-xl md:w-1/3 `}>
 
-        <form onSubmit={handleSubmit} className="grid grid-cols-3 gap-3 md:gap-10">
-          <label className="col-span-1 flex items-center text-xs md:text-sm text-white">Pengunggah</label>
-          <input className="col-span-2 p-1 rounded-md h-10" type="text" value={userEmail} disabled/>
-          <label className="col-span-1 flex items-center text-xs md:text-sm text-white">Judul</label>
-          <input className="col-span-2 p-1 rounded-md h-10" type="text" value={judul} onChange={handleJudulChange}/>
-          <label className="col-span-1 flex items-center text-xs md:text-sm text-white">Deskripsi singkat</label>
-          <input className="col-span-2 p-1 rounded-md h-10" type="text" value={deskripsi} onChange={handleDeskripsiChange}/>
-          <label className="col-span-1 flex items-center text-xs md:text-sm text-white">Tautan pendaftaran</label>
-          <input className="col-span-2 p-1 rounded-md h-10" type="text" value={tautan} onChange={handleTautanChange}/>
-          <label className="col-span-1 flex items-center text-xs md:text-sm text-white">Unggah gambar</label>
-          <input className="col-span-2 rounded-md h-10" type="file" onChange={handleFileChange}/>
-          <label className="col-span-1 flex items-center text-xs md:text-sm text-white">Jenis</label>
-          <div className="col-span-2 grid grid-cols-2 gap-y-1">
+        {/* Clossed button */}
+        <div onClick={()=>{setOpenform((prev) => !prev )}} className="absolute flex justify-center items-center h-10 w-10 bg-red-300 z-50 top-0 right-0 rounded-bl-xl rounded-tr-xl cursor-pointer">
+        <RxCross2 />
+        </div>
+
+        {/* Titile */}
+        <div className="w-full flex flex-col justify-center items-center mb-5">
+          <h2 className="text-dongker text-2xl font-semibold">Add Information</h2>
+          <p className="text-dongker text-xs font-medium w-1/2 text-center">Tambah informasi yang orang lain belum tau</p>
+        </div>
+
+        {/* Form */}
+        <form onSubmit={handleSubmit} className="relative flex flex-col md:gap-3 text-dongker">
+          <div className="w-full">
+            <label className="ml-1 text-xs md:text-sm">Pengunggah</label>
+            <input required id="uploader" className=" py-1 px-3 rounded-full w-full border-2 border-dongker" type="text" value={userEmail} disabled/>
+          </div>
+          <div className="w-full">
+            <label className="ml-1 text-xs md:text-sm">Judul</label>
+            <input required id="title" className=" py-1 px-3 rounded-full w-full border-2 border-dongker" type="text" value={judul} onChange={handleJudulChange}/>
+          </div>
+          <div className="w-full">
+            <label className="ml-1 text-xs md:text-sm">Deskripsi singkat</label>
+            <input required id="description" className=" py-1 px-3 rounded-full w-full border-2 border-dongker" type="text" value={deskripsi} onChange={handleDeskripsiChange}/>
+          </div>
+          <div className="w-full">
+            <label className="ml-1 text-xs md:text-sm">Tautan pendaftaran</label>
+            <input required id="link" className=" py-1 px-3 rounded-full w-full border-2 border-dongker" type="text" value={tautan} onChange={handleTautanChange}/>
+          </div>
+          <div className="w-full">
+            <label className="ml-1 text-xs md:text-sm">Unggah gambar</label>
+            <input id="image" className=" rounded-md " type="file" onChange={handleFileChange}/>
+          </div>
+          <label className="ml-1 text-xs md:text-sm">Jenis</label>
+          <div className=" grid grid-cols-2 gap-y-1">
             <label className="flex items-center">
-              <input type="radio" name="jenis" id="Beasiswa" value="Beasiswa" checked={jenis === "Beasiswa"} onChange={handleJenisChange} />
+              <input required type="radio" name="jenis" id="Beasiswa" value="Beasiswa" checked={jenis === "Beasiswa"} onChange={handleJenisChange} />
               <span className="ml-2">Beasiswa</span>
             </label>
             <label className="flex items-center">
-              <input type="radio" name="jenis" id="Lomba" value="Lomba" checked={jenis === "Lomba"} onChange={handleJenisChange} />
+              <input required type="radio" name="jenis" id="Lomba" value="Lomba" checked={jenis === "Lomba"} onChange={handleJenisChange} />
               <span className="ml-2">Lomba</span>
             </label>
           </div>
 
           <input
-            className="col-span-3 w-1/3 place-self-center rounded-md bg-sky-300 hover:bg-sky-400 text-white"
+            className="col-span-3 w-1/3 place-self-center rounded-lg bg-dongker hover:bg-blue-900 text-white p-1"
             type="submit"
           />
         </form>

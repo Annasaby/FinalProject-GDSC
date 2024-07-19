@@ -13,6 +13,10 @@ export default {
         'spin-slow': 'spin 3s linear infinite',
         'bounce-slow': 'bounce 3s infinite',
       },
+      colors: {
+        'dongker': '#001B48',
+        'biru-muda': '#B4D7FF'
+      },
     },
   },
   plugins: [],
