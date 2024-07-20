@@ -45,7 +45,7 @@ export default function Content({content,cardShow}){
             {/* Title */}
             <p className=" font-medium">{content.judul}</p>
             {/* Description */}
-            <p className="self-start text-xs md:text-sm">{content.deskripsi}</p>
+            <p className="self-start text-xs md:text-sm line-clamp-6 ">{content.deskripsi}</p>
             <div className="flex justify-between items-center w-full">
                 {/* Uploader */}
                 <p className="text-xs md:text-sm">By: {content.pengunggah}</p>

@@ -77,7 +77,7 @@ export default function CreatContent({uploadContent, uploadImage}) {
   return (
     <div className="overflow-x-hidden flex justify-center pt-8">
       {/* Add button */}
-      <div onClick={()=>{setOpenform((prev) => !prev )}} className={` ${openform && '' } flex justify-center w-1/6 bg-white p-2 rounded-full hover:scale-110 ease-in-out transition-all cursor-pointer z-10`}>
+      <div onClick={()=>{setOpenform((prev) => !prev )}} className={` ${openform && '' } flex justify-center w-1/6 bg-white p-2 rounded-full hover:scale-110 ease-in-out transition-all cursor-pointer`}>
         <FaPlus className="text-dongker text-2xl" />
       </div>
 
@@ -88,7 +88,7 @@ export default function CreatContent({uploadContent, uploadImage}) {
       <div className={`fixed ${openform || 'hidden'} top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-40 px-5 py-2 w-3/4 bg-white rounded-xl md:w-1/3 `}>
 
         {/* Clossed button */}
-        <div onClick={()=>{setOpenform((prev) => !prev )}} className="absolute flex justify-center items-center h-10 w-10 bg-red-300 z-50 top-0 right-0 rounded-bl-xl rounded-tr-xl cursor-pointer">
+        <div onClick={()=>{setOpenform((prev) => !prev )}} className="absolute flex justify-center items-center h-10 w-10 bg-red-400 z-50 top-0 right-0 rounded-bl-xl rounded-tr-xl cursor-pointer">
         <RxCross2 />
         </div>
 
@@ -106,11 +106,11 @@ export default function CreatContent({uploadContent, uploadImage}) {
           </div>
           <div className="w-full">
             <label className="ml-1 text-xs md:text-sm">Judul</label>
-            <input required id="title" className=" py-1 px-3 rounded-full w-full border-2 border-dongker" type="text" value={judul} onChange={handleJudulChange}/>
+            <input required id="title" className=" py-1 px-3 rounded-full w-full border-2 border-dongker" type="text" value={judul} onChange={handleJudulChange} minLength={5}/>
           </div>
           <div className="w-full">
             <label className="ml-1 text-xs md:text-sm">Deskripsi singkat</label>
-            <input required id="description" className=" py-1 px-3 rounded-full w-full border-2 border-dongker" type="text" value={deskripsi} onChange={handleDeskripsiChange}/>
+            <input required id="description" className=" py-1 px-3 rounded-full w-full border-2 border-dongker" type="text" value={deskripsi} onChange={handleDeskripsiChange} minLength={5} maxLength={225}/>
           </div>
           <div className="w-full">
             <label className="ml-1 text-xs md:text-sm">Tautan pendaftaran</label>

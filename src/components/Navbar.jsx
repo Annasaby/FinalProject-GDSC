@@ -24,17 +24,17 @@ export default function Navbar({setCardShow, isScrolled}) {
 
 
   return (
-    <nav className={`overflow-hidden top-0 fixed ${isScrolled ? "bg-white  shadow-lg" : ""} bg-opacity-50 w-screen z-20 pb-3`}>
+    <nav className={`overflow-hidden top-0 fixed ${isScrolled ? "bg-slate-100  shadow-lg" : ""} bg-opacity-80 w-screen z-20 pb-3`}>
       <div className="relative flex flex-col md:flex-row items-center justify-between gap-5 pt-5 pb-1 px-10 w-full h-full">
-        <div className="flex items-center text-white">
+        <div className={`flex items-center ${isScrolled ? "text-dongker" : "text-white"}`}>
           <h1 className={`flex gap-3 text-2xl font-semibold `}><span className=""><FaGraduationCap /></span>Bang Info</h1>
         </div>
         <div className="md:-translate-x-14">
           <Category setCardShow={setCardShow} />
         </div>
-        <div className="absolute md:relative right-10 md:right-0 top-5 md:top-0  flex items-center gap-1 text-white cursor-pointer" onClick={handleLogout}>
-          <p className={`hidden md:inline underline  `}>Logout</p> 
-          <p className={`md:hidden `}><MdOutlineLogout /></p>
+        <div className={`absolute md:relative right-10 md:right-0 top-5 md:top-0  flex items-center gap-1 text-white cursor-pointer `} onClick={handleLogout}>
+          <p className={`hidden md:inline underline  ${isScrolled ? "text-dongker" : "text-white"}`}>Logout</p> 
+          <p className={`md:hidden ${isScrolled ? "text-dongker" : "text-white"}`}><MdOutlineLogout /></p>
         </div>
       </div>
     </nav>

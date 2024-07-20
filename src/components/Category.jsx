@@ -22,11 +22,12 @@ export default function Category({ setCardShow }) {
   };
 
   return (
-    <section className="overflow-hidden">
+    <section className="overflow-hidden rounded-full shadow-lg">
       <div className="bg-white py-1 px-5 border-2 border-white flex gap-10 justify-center items-center rounded-full relative">
         <div
           className={`absolute top-0 left-0 w-1/3 h-full bg-dongker rounded-full transition-all duration-300 ease-in-out ${getIndicatorPosition()}`}
         ></div>
+        <a href="#">
         <button
           onClick={() => { handleClick("Semua") }}
           className={`text-xs rounded-full px-2 py-1 z-20 relative ${activeTab === 'Semua' ? 'text-white' : 'text-dongker'
@@ -34,6 +35,8 @@ export default function Category({ setCardShow }) {
         >
           Semua
         </button>
+        </a>
+        <a href="#">
         <button
           onClick={() => { handleClick("Beasiswa") }}
           className={`text-xs rounded-full px-2 py-1 z-20 relative ${activeTab === 'Beasiswa' ? 'text-white' : 'text-dongker'
@@ -41,6 +44,8 @@ export default function Category({ setCardShow }) {
         >
           Beasiswa
         </button>
+        </a>
+        <a href="#">
         <button
           onClick={() => { handleClick("Lomba") }}
           className={`text-xs rounded-full px-2 py-1 z-20 relative ${activeTab === 'Lomba' ? 'text-white' : 'text-dongker'
@@ -48,6 +53,7 @@ export default function Category({ setCardShow }) {
         >
           Lomba
         </button>
+        </a>
       </div>
     </section>
   );

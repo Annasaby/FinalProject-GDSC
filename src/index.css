@@ -5,6 +5,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html{
+    scroll-behavior: smooth;
+}
+
 .text-stroke {
     -webkit-text-stroke: 5px #fff;
     paint-order: stroke fill;
